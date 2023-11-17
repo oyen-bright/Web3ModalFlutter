@@ -1,5 +1,4 @@
 import 'package:appcheck/appcheck.dart';
-import 'package:flutter/foundation.dart';
 import 'package:url_launcher/url_launcher.dart';
 import 'package:web3modal_flutter/services/explorer_service/models/redirect.dart';
 import 'package:web3modal_flutter/utils/core/core_utils_singleton.dart';
@@ -7,7 +6,6 @@ import 'package:web3modal_flutter/utils/platform/i_platform_utils.dart';
 import 'package:web3modal_flutter/utils/platform/platform_utils_singleton.dart';
 import 'package:web3modal_flutter/utils/url/i_url_utils.dart';
 import 'package:web3modal_flutter/utils/url/launch_url_exception.dart';
-
 import 'package:web3modal_flutter/utils/w3m_logger.dart';
 
 Future<bool> _launchUrl(Uri url, {LaunchMode? mode}) async {
@@ -62,7 +60,7 @@ class UrlUtils extends IUrlUtils {
           return await canLaunchUrlFunc(Uri.parse(uri));
         }
       } catch (e) {
-        debugPrint('[$runtimeType] isInstalled $e');
+        // debugPrint('[$runtimeType] isInstalled $e');
       }
     }
 

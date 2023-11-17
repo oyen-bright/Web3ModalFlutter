@@ -3,36 +3,36 @@ import 'dart:convert';
 
 import 'package:event/event.dart';
 import 'package:flutter/material.dart';
+import 'package:go_router/go_router.dart';
 import 'package:url_launcher/url_launcher.dart';
-
 import 'package:walletconnect_flutter_v2/walletconnect_flutter_v2.dart';
+import 'package:web3modal_flutter/constants/eth_constants.dart';
 import 'package:web3modal_flutter/constants/string_constants.dart';
+import 'package:web3modal_flutter/models/w3m_chain_info.dart';
 import 'package:web3modal_flutter/models/w3m_wallet_info.dart';
+import 'package:web3modal_flutter/services/blockchain_api_service/blockchain_api_utils.dart';
+import 'package:web3modal_flutter/services/blockchain_api_service/blockchain_api_utils_singleton.dart';
 import 'package:web3modal_flutter/services/explorer_service/explorer_service.dart';
 import 'package:web3modal_flutter/services/explorer_service/explorer_service_singleton.dart';
 import 'package:web3modal_flutter/services/explorer_service/models/redirect.dart';
 import 'package:web3modal_flutter/services/ledger_service/ledger_service_singleton.dart';
-import 'package:web3modal_flutter/utils/asset_util.dart';
-import 'package:web3modal_flutter/utils/core/core_utils_singleton.dart';
-import 'package:web3modal_flutter/utils/platform/i_platform_utils.dart';
-import 'package:web3modal_flutter/utils/url/launch_url_exception.dart';
-import 'package:web3modal_flutter/utils/w3m_logger.dart';
-import 'package:web3modal_flutter/widgets/widget_stack/widget_stack_singleton.dart';
-import 'package:web3modal_flutter/models/w3m_chain_info.dart';
-import 'package:web3modal_flutter/services/blockchain_api_service/blockchain_api_utils.dart';
-import 'package:web3modal_flutter/services/blockchain_api_service/blockchain_api_utils_singleton.dart';
 import 'package:web3modal_flutter/services/network_service/network_service_singleton.dart';
 import 'package:web3modal_flutter/services/storage_service/storage_service_singleton.dart';
 import 'package:web3modal_flutter/services/w3m_service/i_w3m_service.dart';
 import 'package:web3modal_flutter/theme/w3m_theme.dart';
+import 'package:web3modal_flutter/utils/asset_util.dart';
+import 'package:web3modal_flutter/utils/core/core_utils_singleton.dart';
+import 'package:web3modal_flutter/utils/platform/i_platform_utils.dart';
+import 'package:web3modal_flutter/utils/platform/platform_utils_singleton.dart';
+import 'package:web3modal_flutter/utils/toast/toast_message.dart';
+import 'package:web3modal_flutter/utils/toast/toast_utils_singleton.dart';
+import 'package:web3modal_flutter/utils/url/launch_url_exception.dart';
+import 'package:web3modal_flutter/utils/url/url_utils_singleton.dart';
 import 'package:web3modal_flutter/utils/w3m_chains_presets.dart';
-import 'package:web3modal_flutter/constants/eth_constants.dart';
+import 'package:web3modal_flutter/utils/w3m_logger.dart';
 import 'package:web3modal_flutter/widgets/web3modal.dart';
 import 'package:web3modal_flutter/widgets/web3modal_provider.dart';
-import 'package:web3modal_flutter/utils/toast/toast_message.dart';
-import 'package:web3modal_flutter/utils/platform/platform_utils_singleton.dart';
-import 'package:web3modal_flutter/utils/toast/toast_utils_singleton.dart';
-import 'package:web3modal_flutter/utils/url/url_utils_singleton.dart';
+import 'package:web3modal_flutter/widgets/widget_stack/widget_stack_singleton.dart';
 
 /// Either a [projectId] and [metadata] must be provided or an already created [web3App].
 /// optionalNamespaces is mostly not needed, if you use it, the values set here will override every optionalNamespaces set in evey chain
@@ -582,7 +582,7 @@ class W3MService with ChangeNotifier implements IW3MService {
     if (_context != null) {
       // _isOpen and notify() are handled when we call Navigator.pop()
       // by the open() method
-      Navigator.pop(_context!);
+      _context!.pop();
     } else {
       _notify();
     }
